@@ -1,0 +1,126 @@
+public class Course
+{
+	private String courseName;
+	private String courseGrade;
+	int counter;
+
+	public Course()
+	{
+		courseName="";
+		courseGrade="";
+	}
+	public String getCourseName()
+	{
+		return courseName;
+	}
+	public String getCourseGrade()
+	{
+		return courseGrade;
+	}
+	public Course (String name,String grade)
+	{
+		courseName=name;
+		courseGrade=grade;
+	}
+	public void setCourse (String name,String grade)
+	{
+		courseName=name;
+		courseGrade=grade;
+	}
+	public String toString ()
+	{
+		return (courseName+" "+courseGrade);
+	}
+}
+
+
+public class Person
+{
+	private String firstName;
+	private String lastName;
+	Course [] myCourse;
+	public Person()
+	{
+		firstName="";
+		lastName="";
+	}
+	public Person (String first,String last)
+	{
+		firstName=first;
+		lastName=last;
+		for (int i=0;i<3;i++)
+		{
+			myCourse [i]= new Course();
+		}
+	}
+	public void registerCourse(Course course)
+	{
+		for (int i=0;i<3;i++)
+		{
+			myCourse [i]=course;
+		}
+
+	}
+	public String getFirstName()
+	{
+		return firstName;
+	}
+	public String getLastName()
+	{
+		return lastName;
+	}
+	public void setPerson(String first,String last)
+	{
+		firstName=first;
+		lastName=last;
+
+	}
+	public String toString ()
+	{
+		String getString;
+		getString =(firstName+" "+lastName);
+
+		for(int i=0;i<3;i++)
+		{
+			getString=getString+String.format("%n %-10s",myCourse[i]);
+		}
+		return getString;
+	}
+}
+
+public class Test
+{
+	static Scanner cin= new Scanner (System.in);
+
+
+	public static void main(String[] args)
+	{
+		Person [] myPerson= new Person [4];
+		Course [] myCourse= new Course [3];
+		String first,last,grade,name;
+		for (int i =0;i<2;i++)
+		{
+			System.out.println("First Name");
+			first=cin.next();
+			System.out.println("Last Name");
+			last=cin.next();
+			for (int j=0;j<3;j++)
+			{
+				System.out.println("Course Name");
+				name=cin.next();
+				System.out.println("Course Grade");
+				grade=cin.next();
+				myCourse[i]= new Course(name,grade);
+				
+				myPerson[i].registerCourse(myCourse[i]);
+			}
+			myPerson [i]= new Person(first,last);
+		}
+		for (int i=0;i<2;i++)
+		{
+			System.out.println(myPerson[i]);
+
+		}
+	}
+
+}
